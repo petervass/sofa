@@ -1,0 +1,41 @@
+{
+  "description": "synchronize Mubi movies between browsers",
+  "manifest_version": 2,
+  "name": "Sofa",
+  "version": "1.0",
+  "homepage_url": "http://vassp.hu",
+  "icons": {
+    "48": "icons/sofa-48.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sofa@vassp.hu"
+    }
+  },
+  "permissions": [
+    "activeTab", "storage"
+  ],
+  "browser_action": {
+    "default_icon": "icons/sofa-32.png",
+    "default_title": "Sofa",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://mubi.com/films/*/watch",
+        "*://*.youtube.com/*",
+        "*://*.vimeo.com/*"
+      ],
+      "js": [
+        "content_scripts/sofa.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "page": "background/background.html",
+    "persistent": true
+  },
+  "web_accessible_resources": []
+}
